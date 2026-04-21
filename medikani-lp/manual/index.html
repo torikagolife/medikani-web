@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メディカニ・プラス 管理者マニュアル 🦀✨</title>
+    <style>
+        :root {
+            --primary: #00b894;
+            --primary-dark: #007d63;
+            --secondary: #00cec9;
+            --accent: #fdcb6e;
+            --bg: #f0f7f7;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.8;
+            color: #2d3436;
+            background: linear-gradient(135deg, #eefaf6 0%, #dff9fb 100%);
+            margin: 0;
+            padding: 20px;
+        }
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,184,148,0.15);
+            border: 4px solid #fff;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 32px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+        h2.section-intro {
+            text-align: center;
+            color: var(--primary-dark);
+            font-size: 24px;
+            margin: 40px 0 20px;
+            border-bottom: 4px dotted var(--primary);
+            padding-bottom: 10px;
+        }
+        .step-container {
+            margin-bottom: 60px;
+            padding: 25px;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        .step-header {
+            background: linear-gradient(90deg, #55efc4 0%, #81ecec 100%);
+            color: #003d33;
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            margin: -40px -10px 25px -10px;
+            box-shadow: 0 8px 15px rgba(85,239,196,0.4);
+            display: flex;
+            align-items: center;
+        }
+        .step-header span {
+            font-size: 30px;
+            margin-right: 15px;
+        }
+        .img-main {
+            width: 100%;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .img-main:hover {
+            transform: scale(1.02);
+        }
+        .img-grid {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .img-grid img {
+            flex: 1;
+            min-width: 250px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 2px solid #fff;
+        }
+        .info-card {
+            background: #fff9db;
+            border-left: 8px solid #f1c40f;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #856404;
+        }
+        .highlight {
+            color: #d63031;
+            font-weight: bold;
+            background: linear-gradient(transparent 70%, #ff7675 70%);
+        }
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px;
+            border-top: 2px dashed var(--primary);
+        }
+        .footer-msg {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+        }
+        .btn-close {
+            display: inline-block;
+            background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
+            color: white;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-close:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>📘 メディカニ・プラス 🦀✨</h1>
+        <span class="subtitle">管理者マニュアル 💊🎊</span>
+    </header>
+
+    <h2 class="section-intro">🚀 最初にはじめること 🚀</h2>
+
+    <div class="step-container">
+        <div class="step-header">
+            <span>📁💊</span> ① 採用薬データの登録（CSVアップロード）
+        </div>
+        
+        <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP01.png" class="img-main" alt="登録画面">
+
+        <p>まず、お使いの薬剤システムから採用薬データをCSV出力します。📁✨<br>
+        <div class="info-card">
+            💡 手順はシステムごとに違うため、各システムのメーカー様にお問い合わせ下さい！
+        </div>
+        </p>
+
+        <div class="img-grid">
+            <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP02.png" alt="手順2">
+            <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP03.png" alt="手順3">
+        </div>
+
+        <p><span class="highlight">【CSVファイルをタップして選択】</span>でお手元の採用薬CSVを選んでください！👆✅</p>
+
+        <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP04.png" class="img-main" alt="紐付け確認">
+
+        <p>各列の紐づけが合っているか確認し、元気よく<span class="highlight">【プレビュー】</span>をクリック！🔥</p>
+
+        <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP05.png" class="img-main" alt="完了確認">
+
+        <p>プレビュー画面でバッチリなことを確認したら、<span class="highlight">【メディカニを更新する】</span>をポチッとな！<br>
+        これであなたの施設の採用薬データが反映されました！完了です！🎉✨</p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-header" style="background: linear-gradient(90deg, #fab1a0 0%, #ff7675 100%); color: white;">
+            <span>📢🎊</span> ② スタッフに周知
+        </div>
+        
+        <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP06.png" class="img-main" alt="ポスター作成">
+
+        <p>スタッフの皆様にお知らせするための<span class="highlight">「専用ポスター」</span>が簡単に作れます！🖨️🎨<br>
+        文言を自由に修正して、<span class="highlight">【この内容でポスターを印刷する】</span>をクリックして下さい。</p>
+
+        <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP07.png" class="img-main" alt="印刷結果">
+
+        <p>QRコード付きのプロっぽいポスターが完成します！スタッフエリアに掲示して、みんなのスマホのホーム画面にメディカニを入れて貰いましょう！📲🏠</p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-header" style="background: linear-gradient(90deg, #74b9ff 0%, #0984e3 100%); color: white;">
+            <span>🚀🔥</span> ③ スタッフに使って貰う
+        </div>
+        
+        <div class="img-grid">
+            <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/LP6.png" alt="利用シーン1">
+            <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/LP4.png" alt="利用シーン2">
+        </div>
+
+        <p>これで現場の準備は完了です！採用薬が優先的に検索されるメディカニ・プラスがフル活用できます。🌊✨<br>
+        市販薬からの同成分切り替え検索も爆速！どんどん使って業務をラクにしましょう！🦀🔥</p>
+    </div>
+
+    <footer>
+        <p class="footer-msg">現場の皆様の業務が少しでもラクになることを、心より願っておりますカニ🦀✨</p>
+        <button class="btn-close" onclick="window.close();">👋 マニュアルを閉じる</button>
+    </footer>
+</div>
+
+</body>
+</html>
