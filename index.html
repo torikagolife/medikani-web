@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="採用薬や代替薬への切替をスマホで爆速化。市販薬から処方薬まで検索できる医療機関（調剤薬局・クリニック・病院）向け代替薬探しアプリ「メディカニ」。薬価の比較や最新の添付文書の要約確認もこれ一つで。出荷調整対策や医療DXに。初期費用0円・即日導入可能。">
+    <meta name="description" content="採用薬や代替薬への切替をスマホで爆速化。市販薬から処方薬まで検索できる医療機関（調剤薬局・クリニック・病院）向け代替薬探しアプリ「メディカニ」。薬価の比較や添付文書の要点確認もこれ一つで。出荷調整対策や医療DXに。初期費用0円・即日導入可能。">
     <meta name="keywords" content="代替薬検索, 採用薬, 同効薬, 薬価, 添付文書, 薬局, クリニック, 病院, 出荷調整, 薬剤師, 院内SE, 医療DX, メディカニ">
-<link rel="canonical" href="https://medikani.com/info">
+    <link rel="canonical" href="https://medikani.com/info">
     <title>メディカニ・プラス | 代替薬探しアプリ</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>🦀</text></svg>">
+
+    <!-- ▼▼▼ 追加: OGP（LINE・Slack等でURLを共有したときにロゴとキャッチが表示されます） ▼▼▼ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="メディカニ">
+    <meta property="og:title" content="メディカニ・プラス | 代替薬探しアプリ">
+    <meta property="og:description" content="「その薬、うちならこれ」を一瞬で。スタッフ全員のスマホが医薬品辞書＋採用薬データベースに。調剤薬局・クリニック・病院向け。初期費用0円・即日導入可能。">
+    <meta property="og:image" content="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/logo.png">
+    <meta property="og:url" content="https://medikani.com/info">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="メディカニ・プラス | 代替薬探しアプリ">
+    <meta name="twitter:description" content="「その薬、うちならこれ」を一瞬で。スタッフ全員のスマホが医薬品辞書＋採用薬データベースに。">
+    <meta name="twitter:image" content="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/logo.png">
+    <!-- ▲▲▲ 追加ここまで ▲▲▲ -->
+
     <style>
         /* ベーススタイル */
         body {
@@ -27,47 +42,22 @@
             max-width: 100%;
             height: auto;
         }
-        
+
         /* テキスト強調用（蛍光ペン風マーカー） */
         .highlight {
             background: linear-gradient(transparent 60%, #fef08a 60%);
             font-weight: bold;
             color: #0f172a;
         }
-        
+
         strong {
             color: #1e293b;
             font-weight: 900;
         }
 
-        /* プレースホルダー（画像が入る枠） */
-        .img-placeholder {
-            background-color: #e2e8f0;
-            border: 2px dashed #94a3b8;
-            color: #475569;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            min-height: 150px;
-            font-weight: bold;
-            background: repeating-linear-gradient(
-                45deg,
-                #f8fafc,
-                #f8fafc 10px,
-                #f1f5f9 10px,
-                #f1f5f9 20px
-            );
-        }
         .img-row {
             display: flex;
             gap: 20px;
-        }
-        .img-row .img-placeholder {
-            flex: 1;
         }
 
         /* ヘッダー・ヒーローセクション */
@@ -233,58 +223,64 @@
             margin-right: 5px;
         }
 
-        /* 料金プラン */
-        .pricing-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #ffffff;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            border: 2px solid #e2e8f0;
+        /* 近日公開（開発中の機能） */
+        .coming-soon {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border-top: 2px solid #fed7aa;
+            border-bottom: 2px solid #fed7aa;
         }
-        .pricing-table th, .pricing-table td {
-            padding: 18px;
-            text-align: center;
-            border-bottom: 1px solid #e2e8f0;
+        .coming-grid {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        .pricing-table th {
-            background-color: #f8fafc;
-            color: #334155;
-            font-weight: 900;
-            font-size: 1.1em;
-        }
-        .pricing-table tbody tr:hover {
-            background-color: #f1f5f9;
-        }
-        .pricing-table td:first-child {
-            text-align: left;
-            font-weight: bold;
-            color: #0f172a;
-            font-size: 1.1em;
-        }
-        .price-highlight {
-            color: #ef4444;
-            font-weight: 900;
-            font-size: 1.4em;
-        }
-        .pricing-note {
-            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-            border: 2px solid #fde68a;
+        .coming-card {
+            flex: 1;
+            min-width: 280px;
+            background: #ffffff;
+            border: 2px solid #fdba74;
+            border-radius: 14px;
             padding: 25px;
-            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.08);
             text-align: center;
-            box-shadow: 0 4px 6px rgba(245, 158, 11, 0.1);
         }
-        .pricing-note p:first-child {
-            font-size: 1.2em;
+        .coming-card img {
+            height: 56px;
+            width: auto;
+            margin: 0 auto 15px;
+            display: block;
+        }
+        .coming-badge {
+            display: inline-block;
+            background-color: #ea580c;
+            color: #ffffff;
+            font-size: 0.8em;
             font-weight: 900;
-            color: #b45309;
-            margin: 0 0 10px 0;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        .coming-card p {
+            text-align: left;
+            font-size: 1.02em;
+            color: #334155;
+            margin: 0;
+        }
+        .coming-note {
+            text-align: center;
+            font-size: 0.95em;
+            color: #7c2d12;
+            background: #ffffff;
+            border: 1px dashed #fdba74;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 30px;
+            line-height: 1.8;
         }
 
-        /* FAQ (謎の改行を防ぐ修正) */
+        /* FAQ */
         .faq-item {
             margin-bottom: 25px;
             background-color: #ffffff;
@@ -396,10 +392,6 @@
                 flex-direction: column;
                 gap: 15px;
             }
-            .pricing-table th, .pricing-table td {
-                padding: 12px 8px;
-                font-size: 0.95em;
-            }
             .btn {
                 display: block;
                 width: 85%;
@@ -413,49 +405,10 @@
                 flex-direction: column;
                 gap: 15px;
             }
-        }
-
-        /* ご紹介キャンペーン用スタイル */
-        .campaign-banner {
-            background: linear-gradient(135deg, #ff9d00, #ff5722);
-            color: #ffffff;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 40px auto 20px;
-            max-width: 800px;
-            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.3);
-            border: 2px solid #ffcc80;
-        }
-        .campaign-banner h4 {
-            font-size: 1.5em;
-            margin: 0 0 10px 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-        .campaign-banner p {
-            font-size: 1.1em;
-            margin: 0 0 15px 0;
-            line-height: 1.5;
-        }
-        .campaign-banner strong {
-            color: #fff176; /* 黄色で目立たせる */
-            font-size: 1.1em;
-        }
-        .campaign-btn {
-            background-color: #ffffff;
-            color: #e65100;
-            display: inline-block;
-            padding: 15px 35px;
-            border-radius: 30px;
-            font-weight: 900;
-            font-size: 1.1em;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .campaign-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+            .coming-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
@@ -464,20 +417,20 @@
     <header class="hero">
         <div class="container">
             <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/logo.png" alt="メディカニロゴ" style="width: 500px; max-width: 100%; margin: 0 auto 20px; display: block;">
-            
+
             <div class="target-audience">🏥 全国の調剤薬局・クリニック・病院様へ 💊</div>
-            
+
             <h1><span class="highlight">「その薬、うちならこれ」を一瞬で</span>🚀</h1>
             <h2>市販薬から処方薬まで検索できる「代替薬探し」アプリ。✨</h2>
-            
+
             <p class="lead">パソコンを見に行かなくても、<strong>スタッフ全員のスマホ</strong>が「<strong>医薬品辞書＋採用薬データベース</strong>」になります💡</p>
-            
+
             <div class="hero-tags">
-                ⚡ 他のシステム連携不要で即日導入 / 💰 薬価・コスト意識が自然に向上 / 📑 最新の添付文書要約も即確認
+                ⚡ 他のシステム連携不要で即日導入 / 💰 薬価・コスト意識が自然に向上 / 📑 添付文書の要点もその場で確認
             </div>
-            
+
             <div>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeG3XpRglTei4EhFW2AFFHOBYVicE4IEsmTn8_9FL5GvGJNRg/viewform?usp=publish-editor" target="_blank" rel="noopener" class="btn btn-primary">📝 ベータ版プラス（モニター利用）に申し込む</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeG3XpRglTei4EhFW2AFFHOBYVicE4IEsmTn8_9FL5GvGJNRg/viewform" target="_blank" rel="noopener" class="btn btn-primary">📝 ベータ版プラス（モニター利用）に申し込む</a>
                 <span class="micro-copy">※システム負荷や現場での使い勝手を検証するための限定テスト公開です</span>
             </div>
             <div>
@@ -505,7 +458,7 @@
             <div class="pain-box">
                 💸 「代替薬を選ぶとき、スタッフが<strong>薬価を気にせず高い先発品を選んでしまう</strong>…経営的にも患者負担的にもコスト意識を持たせたい📉」
             </div>
-            
+
             <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/LP3.png" alt="現場の困っているイラスト" style="width: 100%; max-width: 600px; margin: 30px auto 0; display: block; border-radius: 12px;">
         </div>
     </section>
@@ -524,7 +477,7 @@
 
         <div class="feature-item">
             <h4>🤝 ② 施設のコミュニケーションを爆速化。メモ＆掲示板で全スタッフ共有</h4>
-            <p>「現在入荷待ち」などのお薬ごとのメモに加え、<strong>施設独自の「掲示板機能」</strong>を搭載。スタッフのスマホからいつでも確認できるので、<strong>申し送りの漏れを防ぎます</strong>。事務員さんやパートさんへの周知も一瞬です📱💬📱💬</p>
+            <p>「現在入荷待ち」などのお薬ごとのメモに加え、<strong>施設独自の「掲示板機能」</strong>を搭載。スタッフのスマホからいつでも確認できるので、<strong>申し送りの漏れを防ぎます</strong>。事務員さんやパートさんへの周知も一瞬です📱💬</p>
             <div class="img-row" style="align-items: center;">
                 <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/LP6.png" alt="メモ機能画面1" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
                 <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/LP7.png" alt="メモ機能画面2" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
@@ -532,20 +485,20 @@
         </div>
 
         <div class="feature-item">
-            <h4>🤖 ③ 市販薬（OTC）からの「処方薬推測」もAIが即答</h4>
-            <p>患者さんからの「今飲んでる市販薬と同じ処方薬を出してほしい」という相談にも、<strong>AI薬剤師が成分を分析</strong>して即座に同等成分の処方薬を提案。もちろん<strong>自施設の採用薬が優先表示</strong>されます。🧠💊</p>
+            <h4>🤖 ③ 市販薬（OTC）からの「処方薬さがし」もAIがサポート</h4>
+            <p>患者さんからの「今飲んでる市販薬と同じ処方薬を出してほしい」という相談にも、<strong>AIアシスタント「メディカニくん」が成分を解析</strong>して、同等成分の処方薬候補を提案します。もちろん<strong>自施設の採用薬が優先表示</strong>されます。🧠💊<br><span style="font-size: 0.85em; color: #64748b;">※AIによる提案は候補を絞り込むための参考情報です。採否の判断は必ず薬剤師・医師が行ってください。</span></p>
             <div class="img-row" style="align-items: center;">
-                <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/LP8.png" alt="AI処方推測1" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
-                <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/LP9.png" alt="AI処方推測2" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
+                <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/LP8.png" alt="AIによる処方薬候補の提案1" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
+                <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/LP9.png" alt="AIによる処方薬候補の提案2" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
             </div>
         </div>
 
         <div class="feature-item">
-            <h4>📑 ④ 「添付文書の要約情報（禁忌・副作用など）」もその場でサクッと確認</h4>
-            <p>公的な医薬品情報をもとに、お薬の詳細画面から<strong>効能・効果、用法・用量、禁忌、副作用</strong>などの重要な情報を<strong>要点を絞って要約表示</strong>。アコーディオンですぐに展開してサクッと確認できます。要点がまとまっているので、わざわざパソコンで調べ直す手間が省け、よりスムーズで安全な服薬指導・処方支援をサポートします。🔍<br><span style="font-size: 0.85em; color: #64748b;">※データは定期的に更新されます。※著作権に配慮し、独自に要約したテキストを表示しています。</span></p>
+            <h4>📑 ④ 「添付文書の要点（禁忌・副作用など）」を要約で確認＋原文へワンタップ</h4>
+            <p>公的な医薬品情報をもとに、<strong>効能・効果、用法・用量、禁忌、副作用</strong>などの重要な項目を<strong>当社が独自に要約</strong>してお薬の詳細画面に表示します。さらに<strong>添付文書の原文（PMDA医薬品情報検索）へのリンク</strong>を用意しているので、正確な記載を確認したいときはワンタップで公式ページへ移動できます。🔍<br>要点を先に押さえてから必要なときだけ原文にあたれるので、わざわざパソコンで調べ直す手間が省け、よりスムーズで安全な服薬指導・処方支援をサポートします。<br><span style="font-size: 0.85em; color: #64748b;">※著作権に配慮し、添付文書の全文転載は行っておりません。表示されるのは当社が独自に作成した要約テキストです。※データは定期的に更新されます。正式な内容は必ず添付文書の原文をご確認ください。</span></p>
             <div class="img-row" style="align-items: center;">
-                <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP33.png" alt="添付文書確認画面1" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
-                <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP34.png" alt="添付文書確認画面2" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
+                <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP33.png" alt="添付文書の要約表示画面1" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
+                <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/KP34.png" alt="添付文書の要約表示画面2" style="flex: 1; min-width: 0; width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: contain;">
             </div>
         </div>
     </section>
@@ -553,7 +506,7 @@
     <section class="steps">
         <div class="container">
             <h3>🛠️ 導入のカンタンさ<br><span style="font-size:0.5em; color:#64748b; font-weight:normal;">「システム導入＝面倒くさい」という壁を壊します🚧💥</span></h3>
-            
+
             <div class="step-box">
                 <strong>1️⃣ Step 1:</strong> アカウント登録（<strong>最短1分</strong>）。
             </div>
@@ -568,10 +521,37 @@
         </div>
     </section>
 
+    <!-- ▼▼▼ 追加: 近日公開セクション ▼▼▼ -->
+    <section class="coming-soon" id="coming">
+        <div class="container">
+            <h3>🔧 開発中の新機能<br><span style="font-size:0.5em; color:#64748b; font-weight:normal;">病院薬剤部の業務を、もっと軽くする2つのツール</span></h3>
+
+            <div class="coming-grid">
+                <div class="coming-card">
+                    <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/kan_logo.png" alt="メディカニ鑑別">
+                    <div class="coming-badge">COMING SOON</div>
+                    <p>入院時の<strong>持参薬鑑別</strong>を助けるツールです。裸錠の<strong>刻印</strong>やお薬の<strong>名前</strong>からお薬を特定して持参薬リストを作り、<strong>継続か院内採用薬への切替か</strong>まで決めて、そのまま鑑別報告書にできます。📄</p>
+                </div>
+                <div class="coming-card">
+                    <img src="https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/kyu_logo.png" alt="メディカニ休薬チェッカー">
+                    <div class="coming-badge">COMING SOON</div>
+                    <p>手術や検査の前の「<strong>このお薬、いつから止める？</strong>」を確認するツールです。術式・検査を選ぶだけで<strong>継続・休薬の判定と休薬開始日</strong>が並び、そのまま確認票として印刷できます。🗓️</p>
+                </div>
+            </div>
+
+            <div class="coming-note">
+                🦀 どちらも現在<strong>開発中</strong>です。画面や機能は変更となる場合があります。<br>
+                <strong>ベータ版モニターにお申し込みいただいた施設様には、公開時に優先してご案内いたします。</strong><br>
+                <span style="font-size: 0.9em; color: #9a3412;">※どちらも判断を補助するツールです。最終的な確認・判断は必ず薬剤師・医師が行ってください。</span>
+            </div>
+        </div>
+    </section>
+    <!-- ▲▲▲ 追加ここまで ▲▲▲ -->
+
     <section class="container" id="beta">
-        <h3>🚀 ベータ版モニター施設募集（最低年内は無料）</h3>
+        <h3>🚀 ベータ版モニター施設募集（最低1年間無料）</h3>
         <div style="background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%); border: 2px solid #bfdbfe; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);">
-            <p style="font-size: 1.4em; font-weight: 900; color: #1e40af; margin: 0 0 15px 0;">🎁 最低2026年内は【完全無料】で全機能をご利用いただけます！</p>
+            <p style="font-size: 1.4em; font-weight: 900; color: #1e40af; margin: 0 0 15px 0;">🎁 ご登録から最低1年間は【完全無料】で全機能をご利用いただけます！</p>
             <p style="font-size: 1.1em; font-weight: bold; color: #334155; line-height: 1.8; margin-bottom: 20px;">
                 現在、システム改善のためのフィードバックにご協力いただける施設様に向けて、ベータ版を限定開放中です。<br>
                 現場での業務効率化に向けた実証実験として、ぜひお気軽にお試しください。<br>
@@ -585,20 +565,30 @@
 
     <section class="container" id="faq">
         <h3>❓ よくある質問（FAQ）</h3>
-        
+
         <div class="faq-item">
             <div class="faq-q"><span>💬 スタッフごとにスマホにアプリをインストールさせる必要がありますか？</span></div>
             <div class="faq-a"><span>💡 いいえ、ブラウザ（SafariやChrome）でサクサク動くので、<strong>インストールは不要</strong>です。URLをブックマークやホーム画面に追加するだけです。📱</span></div>
         </div>
-        
+
         <div class="faq-item">
-            <div class="faq-q"><span>💬 レセコンや薬剤システムとの連携工事やセキュリティリスクはありますか？</span></div>
-            <div class="faq-a"><span>💡 他システムと直接は繋がらない「独立型（ExcelまたはCSVアップロード方式）」のため、患者の<strong>個人情報が漏れるリスクはゼロ</strong>です。大掛かりな工事も一切不要です。🛡️</span></div>
+            <div class="faq-q"><span>💬 レセコンや薬剤システムとの連携工事は必要ですか？</span></div>
+            <div class="faq-a"><span>💡 いいえ。レセコン・電子カルテとは<strong>直接接続しない「独立型」</strong>（ExcelまたはCSVをアップロードする方式）のため、大掛かりな連携工事は一切不要です。アップロードいただく採用薬リストは医薬品の情報のみで、<strong>患者情報は含まれません</strong>。🛡️</span></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q"><span>💬 患者情報の取り扱いはどうなっていますか？外部のAIサービスにデータは送られますか？</span></div>
+            <div class="faq-a"><span>💡 通常の医薬品検索では、患者情報を入力する画面はありません。ただし<strong>写真の読み取り（OCR）機能をご利用の場合に限り、撮影した画像を外部のAI解析サービス（OpenAI社のAPI）へ送信して文字起こしを行います</strong>。お薬手帳などを撮影する際は、氏名等が写り込む可能性がある点にご留意ください。<br>同APIに送信されたデータは、提供元の規約により<strong>AIモデルの学習には利用されません</strong>（2023年3月1日以降の方針）。また不正利用監視のため最大30日間保持された後に削除されます。<br>詳細は<a href="https://medikani.com/privacy" target="_blank" rel="noopener" style="color:#2563eb; font-weight:bold;">プライバシーポリシー</a>をご確認ください。院内規程に応じて、写真読み取り機能を使わない運用も可能です。🔐</span></div>
         </div>
 
         <div class="faq-item">
             <div class="faq-q"><span>💬 現場のスタッフから「リストに載ってない」などの報告はできますか？</span></div>
             <div class="faq-a"><span>💡 はい、お薬の詳細画面に「🚨 現場の知見を報告する」ボタンがあり、<strong>スタッフのスマホから簡単に管理者へ</strong>採用漏れやメモ追加の依頼が送れます。✉️</span></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q"><span>💬 表示される添付文書の情報は、原文がそのまま載っているのですか？</span></div>
+            <div class="faq-a"><span>💡 いいえ。著作権に配慮し、<strong>全文の転載は行っていません</strong>。効能・効果や禁忌などの要点を<strong>当社が独自に要約したテキスト</strong>を表示し、あわせて<strong>原文（PMDA医薬品情報検索）へのリンク</strong>をご用意しています。正式な内容は必ず原文でご確認ください。📑</span></div>
         </div>
     </section>
 
@@ -611,7 +601,7 @@
     <section class="closing">
         <div class="container">
             <h3 style="margin-bottom: 30px;">まずはベータ版モニターとして、現場の『<strong>検索ストレス・ゼロ</strong>』を実感してください🦀！✨</h3>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeG3XpRglTei4EhFW2AFFHOBYVicE4IEsmTn8_9FL5GvGJNRg/viewform?usp=publish-editor" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.4em; padding: 25px 50px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);">📝 ベータ版プラス（モニター利用）に申し込む</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeG3XpRglTei4EhFW2AFFHOBYVicE4IEsmTn8_9FL5GvGJNRg/viewform" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.4em; padding: 25px 50px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);">📝 ベータ版プラス（モニター利用）に申し込む</a>
             <div style="margin-top: 20px;">
                 <a href="https://medikani.com/HPTEST1" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 1.1em; padding: 15px 30px;">✨ 登録不要！デモ画面（メディカニ・プラス）を触ってみる</a>
             </div>
@@ -635,10 +625,10 @@
 
             <div class="footer-links">
                 <a href="https://medikani.com/tokusho" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
-                <a href="https://medikani.com/terms/" target="_blank" rel="noopener">利用規約</a>
+                <a href="https://medikani.com/terms" target="_blank" rel="noopener">利用規約</a>
                 <a href="https://medikani.com/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>
             </div>
-            
+
             <div class="copyright">
                 &copy; 2026 メディカニ All Rights Reserved.
             </div>
