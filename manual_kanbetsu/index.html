@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メディカニ鑑別 マスタ管理マニュアル 🦀✨</title>
+<style>
+    :root {
+        --primary: #00b894;
+        --primary-dark: #007d63;
+        --secondary: #00cec9;
+        --accent: #fdcb6e;
+        --bg: #f0f7f7;
+    }
+    body {
+        font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        line-height: 1.8;
+        color: #2d3436;
+        background: linear-gradient(135deg, #eefaf6 0%, #dff9fb 100%);
+        margin: 0;
+        padding: 20px;
+    }
+    .wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: 0 20px 40px rgba(0,184,148,0.15);
+        border: 4px solid #fff;
+    }
+    header {
+        text-align: center;
+        margin-bottom: 50px;
+        padding: 30px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        border-radius: 20px;
+        color: white;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    header h1 {
+        font-size: 32px;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .subtitle {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+        background: rgba(255,255,255,0.2);
+        padding: 5px 15px;
+        border-radius: 50px;
+        display: inline-block;
+    }
+    h2.section-intro {
+        text-align: center;
+        color: var(--primary-dark);
+        font-size: 24px;
+        margin: 40px 0 20px;
+        border-bottom: 4px dotted var(--primary);
+        padding-bottom: 10px;
+    }
+    .step-container {
+        margin-bottom: 60px;
+        padding: 25px;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
+    .step-header {
+        background: linear-gradient(90deg, #55efc4 0%, #81ecec 100%);
+        color: #003d33;
+        padding: 15px 25px;
+        border-radius: 15px;
+        font-size: 22px;
+        font-weight: bold;
+        margin: -40px -10px 25px -10px;
+        box-shadow: 0 8px 15px rgba(85,239,196,0.4);
+        display: flex;
+        align-items: center;
+    }
+    .step-header span.emo {
+        font-size: 30px;
+        margin-right: 15px;
+    }
+    .img-main {
+        width: 100%;
+        border-radius: 15px;
+        margin: 15px 0;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        display: block;
+    }
+    .img-main:hover { transform: scale(1.02); }
+    .info-card {
+        background: #fff9db;
+        border-left: 8px solid #f1c40f;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        font-weight: bold;
+        color: #856404;
+    }
+    .info-card.danger {
+        background: #ffeaea;
+        border-left-color: #d63031;
+        color: #a03028;
+    }
+    .info-card.tip {
+        background: #eafaf5;
+        border-left-color: var(--primary);
+        color: #056450;
+    }
+    .info-card p { margin: 0 0 10px; }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card ul { margin: 10px 0 0; padding-left: 1.3em; font-weight: normal; }
+    .info-card li { margin-bottom: 6px; }
+    .highlight {
+        color: #d63031;
+        font-weight: bold;
+        background: linear-gradient(transparent 70%, #ff7675 70%);
+    }
+    .btn {
+        display: inline-block;
+        background: #eafaf5;
+        border: 2px solid var(--primary);
+        color: var(--primary-dark);
+        border-radius: 50px;
+        padding: 2px 14px;
+        font-weight: bold;
+        font-size: 15px;
+        white-space: nowrap;
+    }
+    code {
+        background: #f1f3f5;
+        border-radius: 6px;
+        padding: 2px 8px;
+        font-family: Menlo, Consolas, monospace;
+        font-size: 14px;
+        color: #2d3436;
+    }
+    /* ---- もくじ ---- */
+    .toc {
+        background: #eafaf5;
+        border: 2px dashed var(--primary);
+        border-radius: 20px;
+        padding: 22px 28px;
+        margin-bottom: 45px;
+    }
+    .toc h3 { margin: 0 0 12px; color: var(--primary-dark); font-size: 19px; }
+    .toc ol { margin: 0; padding-left: 1.4em; }
+    .toc li { margin-bottom: 4px; }
+    .toc a { color: var(--primary-dark); font-weight: bold; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    /* ---- 画像プレースホルダ ---- */
+    /* R2に同じ名前で上げると自動で写真に切り替わります（HTML編集不要） */
+    .shot { margin: 15px 0; }
+    .shot__box {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        background: #fff;
+    }
+    .shot__ph {
+        min-height: 190px;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 10px;
+        padding: 34px 20px; text-align: center;
+        background: repeating-linear-gradient(135deg,#eafaf5 0 12px,#ffffff 12px 24px);
+        border: 3px dashed #a8e6d5;
+        border-radius: 15px;
+    }
+    .shot__ph b {
+        font-size: 18px; color: var(--primary-dark);
+        background: #fff; border: 2px solid var(--primary);
+        border-radius: 50px; padding: 4px 18px;
+        font-family: Menlo, Consolas, monospace;
+    }
+    .shot__ph small { color: #7f8c8d; font-size: 13px; line-height: 1.6; max-width: 32ch; }
+    .shot__cap { margin-top: 8px; font-size: 14px; color: #636e72; text-align: center; }
+    /* ---- テーブル ---- */
+    .tblwrap { overflow-x: auto; margin: 20px 0; }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+    table.tbl th, table.tbl td {
+        border: 1px solid #dfe6e9; padding: 12px 14px; text-align: left; vertical-align: top;
+    }
+    table.tbl th { background: #eafaf5; color: var(--primary-dark); font-weight: bold; white-space: nowrap; }
+    /* ---- フッター ---- */
+    footer {
+        text-align: center;
+        margin-top: 80px;
+        padding: 40px;
+        border-top: 2px dashed var(--primary);
+    }
+    .footer-msg {
+        font-size: 20px; font-weight: bold; color: var(--primary-dark); margin-bottom: 30px;
+    }
+    .btn-close {
+        display: inline-block;
+        background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
+        color: white; padding: 18px 50px; border-radius: 50px;
+        font-size: 18px; font-weight: bold; text-decoration: none;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        border: none; cursor: pointer; transition: all 0.3s;
+    }
+    .btn-close:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+        background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+    }
+    @media (max-width: 600px) {
+        body { padding: 10px; }
+        .wrapper { padding: 22px 16px; border-radius: 20px; }
+        header h1 { font-size: 24px; }
+        .step-header { font-size: 18px; padding: 12px 16px; margin: -32px -4px 20px -4px; }
+        .step-header span.emo { font-size: 24px; margin-right: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        * { transition: none !important; }
+        .img-main:hover { transform: none; }
+    }
+    @media print {
+        body { background: #fff; padding: 0; }
+        .wrapper { box-shadow: none; border: none; padding: 0; max-width: none; }
+        .btn-close, .toc { display: none; }
+        .step-container { page-break-inside: avoid; }
+    }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>🔍 メディカニ鑑別 🦀✨</h1>
+        <span class="subtitle">マスタ管理マニュアル 💊🎊</span>
+    </header>
+
+    <div class="toc">
+        <h3>📖 このページでできること</h3>
+        <ol>
+            <li><a href="#s1">画面を開く（ログイン）</a></li>
+            <li><a href="#s2">用法マスタ 📝</a></li>
+            <li><a href="#s3">用量・単位のプルダウン 🔢</a></li>
+            <li><a href="#s4">追加刻印 🔎</a></li>
+            <li><a href="#s5">帳票の定型文 💬</a></li>
+            <li><a href="#s6">帳票の署名 ✍️</a></li>
+            <li><a href="#s7">保存と反映 💾</a></li>
+            <li><a href="#s8">よくある質問 ❓</a></li>
+        </ol>
+    </div>
+
+    <h2 class="section-intro">🚀 まずは画面を開こう 🚀</h2>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s1">
+        <div class="step-header">
+            <span class="emo">🔐🦀</span> ① 管理画面にログイン
+        </div>
+
+        <p>ブラウザで <code>/施設ID/kanbetsu-admin</code> を開いてください！🖥️<br>
+        施設IDは、いつも使っている鑑別画面のURLと同じものです✨</p>
+
+        <figure class="shot" data-img="MK01.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MK01.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">管理パスワードの入力画面</figcaption>
+        </figure>
+
+        <div class="info-card">
+            🔑 ここで入れるのは<span class="highlight">施設の管理パスワード</span>です！<br>
+            スタッフのみなさんが鑑別画面に入るときのパスワードとは<strong>別物</strong>なので気をつけてくださいね😉
+        </div>
+
+        <p>ログインすると、設定項目が上から順に並んでいます👇</p>
+
+        <div class="info-card tip">
+            📋 <strong>この画面の中身</strong><br><br>
+            <span class="btn">📝 用法マスタ</span>
+            <span class="btn">🔢 用量・単位のプルダウン</span>
+            <span class="btn">🔎 追加刻印（採用薬）</span>
+            <span class="btn">💬 帳票の定型テキスト</span>
+            <span class="btn">✍️ 帳票の定型署名</span>
+            <br><br>
+            必要なところだけ触ればOK！全部埋めなくても大丈夫です🙆
+        </div>
+
+        <p>右上の <span class="btn">↩️ 戻る</span> でいつでも鑑別画面に戻れます👋</p>
+    </div>
+
+    <h2 class="section-intro">⚙️ 鑑別を使いやすく整えよう ⚙️</h2>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s2">
+        <div class="step-header" style="background: linear-gradient(90deg, #74b9ff 0%, #0984e3 100%); color: white;">
+            <span class="emo">📝✨</span> ② 用法マスタ
+        </div>
+
+        <p>お薬を1つずつ登録するとき、用法をプルダウンからサクッと選べるようにする設定です🎯<br>
+        よく使う用法を入れておけば、毎回打ち込まなくてOK！</p>
+
+        <figure class="shot" data-img="MK02.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MK02.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">用法マスタの一覧と追加欄</figcaption>
+        </figure>
+
+        <p><strong>✨ 追加のしかた ✨</strong></p>
+
+        <div class="tblwrap">
+        <table class="tbl">
+            <tr><th>用法名</th><td>患者さんや処方元に見せる形で。例：<code>1日2回朝・夕</code></td></tr>
+            <tr><th>略称</th><td>帳票の狭い欄に入る短い形。例：<code>2×朝夕</code><br>空欄なら用法名がそのまま使われます👌</td></tr>
+        </table>
+        </div>
+
+        <p>入力したら <span class="btn">➕ 用法を追加</span> をポチッと！一覧の末尾に増えます🎉</p>
+
+        <p><strong>✨ 直す・消す ✨</strong><br>
+        一覧の各行にある <span class="btn">編集</span> で名前と略称を変更、<span class="btn">削除</span> で一覧から外せます🗑️</p>
+
+        <div class="info-card">
+            💡 用法を削除しても、<strong>すでに作った鑑別帳票の中身は変わりません</strong>！<br>
+            これから登録するお薬で選べなくなるだけなので、安心して整理してくださいね✨
+        </div>
+
+        <p>一覧が空のときは「用法マスタが空です。」と出ます。まずは施設でよく使う3〜5個から始めるのがオススメ🦀</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s3">
+        <div class="step-header" style="background: linear-gradient(90deg, #a29bfe 0%, #6c5ce7 100%); color: white;">
+            <span class="emo">🔢💊</span> ③ 用量・単位のプルダウン
+        </div>
+
+        <p>鑑別の入力画面で「1回量」を選ぶときの選択肢を決めます📐<br>
+        単位と数量を、それぞれカンマ区切りで並べてください！</p>
+
+        <figure class="shot" data-img="MK03.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MK03.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">用量・単位の設定欄</figcaption>
+        </figure>
+
+        <div class="tblwrap">
+        <table class="tbl">
+            <thead><tr><th>欄</th><th>入力例</th><th>ポイント</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>単位</td>
+                    <td><code>錠, カプセル, 包, g, mL</code></td>
+                    <td>施設で扱う剤形に合わせて増減してください。並べた順番がそのままプルダウンの順番になります✨</td>
+                </tr>
+                <tr>
+                    <td>用量</td>
+                    <td><code>0.5, 1, 1.5, 2, 3</code></td>
+                    <td>半錠を扱うなら <code>0.5</code> を入れておくと便利です👍</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <div class="info-card tip">
+            💡 よく使うものほど<strong>左（先頭）</strong>に置くと、現場のタップ数が減ります🦀🔥
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s4">
+        <div class="step-header" style="background: linear-gradient(90deg, #fab1a0 0%, #ff7675 100%); color: white;">
+            <span class="emo">🔎💊</span> ④ 追加刻印（採用薬）
+        </div>
+
+        <p>錠剤やカプセルの刻印からお薬を探す機能に、「この刻印でも探せるよ」という情報を足せます🔍<br>
+        <strong>採用薬が対象</strong>です！</p>
+
+        <div class="info-card">
+            🤔 <strong>どんなときに使うの？</strong><br><br>
+            添付文書に刻印が載っていないお薬や、実物と表記が違うお薬があるんです😢<br>
+            「PTPシートには書いてあるのに検索で出てこない！」というお薬を見つけたら、ここに足しておけば次から出るようになります✨
+        </div>
+
+        <p><strong>✨ 追加の3ステップ ✨</strong></p>
+
+        <div class="tblwrap">
+        <table class="tbl">
+            <tr><th>①</th><td>検索欄に薬品名を入れて、対象のお薬を選ぶ🔍</td></tr>
+            <tr><th>②</th><td>実物を見ながら、書いてあるとおりに刻印を入力<br>例：<code>TW 25</code> ／ <code>表:あ 裏:123</code></td></tr>
+            <tr><th>③</th><td><span class="btn">刻印を追加</span> をポチッ！「登録済みの追加刻印」に並びます🎉</td></tr>
+        </table>
+        </div>
+
+        <figure class="shot" data-img="MK04.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MK04.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">お薬を選んで刻印を追加するところ</figcaption>
+        </figure>
+
+        <figure class="shot" data-img="MK05.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MK05.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">登録済みの追加刻印の一覧</figcaption>
+        </figure>
+
+        <p><strong>✨ 消したいとき ✨</strong><br>
+        各行の <span class="btn">削除</span> で1件ずつ、<span class="btn">全削除</span> でこの施設の追加刻印をまとめて消せます🗑️</p>
+
+        <div class="info-card danger">
+            ⚠️ <span class="highlight">【全削除】は取り消せません！</span><br>
+            本当にこの施設の追加刻印を<strong>すべて</strong>消してよいか、実行前にもう一度ご確認ください🙏
+        </div>
+
+        <p>追加した刻印は元の添付文書データを書き換えるものではなく、<strong>この施設の検索にだけ</strong>足されます🦀✨</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s5">
+        <div class="step-header" style="background: linear-gradient(90deg, #ffeaa7 0%, #fdcb6e 100%); color: #d35400;">
+            <span class="emo">💬📄</span> ⑤ 帳票の定型文
+        </div>
+
+        <p>鑑別帳票に載せる文章のうち、毎回同じ内容になるものをここに入れておきましょう📝<br>
+        <span class="btn">💬 帳票の定型テキスト</span> と <span class="btn">💬 備考の定型文</span> の2種類があります✨</p>
+
+        <figure class="shot" data-img="MK06.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MK06.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">定型テキストと備考の定型文</figcaption>
+        </figure>
+
+        <div class="info-card">
+            ✍️ <strong>入力のコツ</strong><br>
+            備考の定型文は <span class="highlight">1行に1つずつ</span> 書いてください！<br>
+            改行で区切ったぶんだけ、帳票を作るときの選択肢としてズラッと並びます🎊
+        </div>
+
+        <p><span class="btn">デフォルトに戻す</span> を押すと、メディカニがあらかじめ用意している文面に戻ります。<br>
+        書き換えたあとで「やっぱり元がよかった…」というときにどうぞ😉</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s6">
+        <div class="step-header" style="background: linear-gradient(90deg, #81ecec 0%, #00cec9 100%); color: #00504d;">
+            <span class="emo">✍️🖊️</span> ⑥ 帳票の署名
+        </div>
+
+        <p>帳票の末尾に入れる署名欄の文言です🖊️<br>
+        実施者を手書きで記入する運用なら、下線を引いた形にしておくと便利ですよ！</p>
+
+        <p>例：<code>鑑別実施　薬剤師：＿＿＿＿＿＿＿＿</code></p>
+
+        <p><span class="btn">右寄せ</span> にチェックを入れると、帳票の右端に寄せて印字されます📄✨</p>
+
+        <figure class="shot" data-img="MK07.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MK07.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">署名の設定と、印字されたときの見え方</figcaption>
+        </figure>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s7">
+        <div class="step-header" style="background: linear-gradient(90deg, #55efc4 0%, #00b894 100%); color: #003d33;">
+            <span class="emo">💾🎉</span> ⑦ 保存と反映
+        </div>
+
+        <div class="info-card danger">
+            🚨 <span class="highlight">いちばん大事なこと！</span><br><br>
+            画面で入力しただけでは<strong>保存されていません</strong>😱<br>
+            最後に必ず <span class="btn">💾 保存</span> を押してください！<br>
+            押さずに画面を閉じると、せっかく入力した内容が消えてしまいます…🥲
+        </div>
+
+        <figure class="shot" data-img="MK08.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MK08.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">保存ボタン</figcaption>
+        </figure>
+
+        <p>保存すると、この施設の鑑別画面にすぐ反映されます🎊<br>
+        変わっていないように見えるときは、鑑別画面を開き直してみてください🔄</p>
+
+        <div class="info-card">
+            🏢 <strong>【共通デフォルトに保存】について</strong><br>
+            こちらはメディカニの運営が<strong>全施設の初期値</strong>を更新するためのボタンです。<br>
+            施設の設定は <span class="btn">💾 保存</span> のほうを使ってくださいね🙏
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s8">
+        <div class="step-header" style="background: linear-gradient(90deg, #b2bec3 0%, #636e72 100%); color: white;">
+            <span class="emo">❓💡</span> ⑧ よくある質問（FAQ）
+        </div>
+
+        <p><strong>Q. 「鑑別オプションが有効ではありません」と出ちゃいます😭</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> この施設が鑑別オプションに加入していない状態です。導入担当までご連絡ください📩</p>
+
+        <p><strong>Q. 管理パスワードが通りません…🔑</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> スタッフが鑑別画面に入るときのパスワードと混同していませんか？<span class="highlight">別物</span>です！</p>
+
+        <p><strong>Q. 設定したのに鑑別画面に出てきません🤔</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> <span class="btn">💾 保存</span> を押したか確認して、鑑別画面を開き直してみてください🔄</p>
+
+        <p><strong>Q. 刻印を足したのに検索でヒットしません🔍</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> 入力した刻印と、検索欄に入れた文字を見比べてみてください。<span class="highlight">スペースの有無も区別されます</span>！</p>
+
+        <p><strong>Q. 用法が選べません📝</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> 用法マスタが空のままになっていませんか？まずは1つ登録してみてください✨</p>
+
+        <div class="info-card tip">
+            📮 解決しないときは、<strong>画面のスクリーンショットと施設ID</strong>を添えてお問い合わせください！<br>
+            そのほうが原因がすぐ分かって、早く直せますカニ🦀✨
+        </div>
+    </div>
+
+    <footer>
+        <p class="footer-msg">現場の皆様の業務が少しでもラクになることを、心より願っておりますカニ🦀✨</p>
+        <button class="btn-close" onclick="window.close();">👋 マニュアルを閉じる</button>
+    </footer>
+</div>
+
+<script>
+/* ==========================================================================
+   画像の差し替え
+   --------------------------------------------------------------------------
+   R2_BASE を1か所だけ書き換えれば、置き場所ごと引っ越せます。
+   各画像は figure の data-img に書いたファイル名で読み込みます。
+   ファイルがまだ無いあいだは点線の枠にファイル名が表示され、
+   R2にアップロードした時点で自動的に画像へ切り替わります（HTMLの編集は不要）。
+   ========================================================================== */
+var R2_BASE = "https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/";
+
+(function () {
+  var figs = document.querySelectorAll('.shot[data-img]');
+  Array.prototype.forEach.call(figs, function (fig) {
+    var name = fig.getAttribute('data-img');
+    if (!name) return;
+    var box = fig.querySelector('.shot__box');
+    var ph  = fig.querySelector('.shot__ph');
+    var cap = fig.querySelector('.shot__cap');
+    var img = new Image();
+    img.className = 'img-main';
+    img.style.margin = '0';
+    img.alt = cap ? cap.textContent.trim() : name;
+    img.loading = 'lazy';
+    img.onload = function () {
+      if (ph) ph.style.display = 'none';
+      box.insertBefore(img, box.firstChild);
+    };
+    img.onerror = function () { /* まだ無いときは点線の枠のまま */ };
+    img.src = R2_BASE + name;
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メディカニ休薬チェッカー マスタ管理マニュアル 🦀✨</title>
+<style>
+    :root {
+        --primary: #00b894;
+        --primary-dark: #007d63;
+        --secondary: #00cec9;
+        --accent: #fdcb6e;
+        --bg: #f0f7f7;
+    }
+    body {
+        font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        line-height: 1.8;
+        color: #2d3436;
+        background: linear-gradient(135deg, #eefaf6 0%, #dff9fb 100%);
+        margin: 0;
+        padding: 20px;
+    }
+    .wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: 0 20px 40px rgba(0,184,148,0.15);
+        border: 4px solid #fff;
+    }
+    header {
+        text-align: center;
+        margin-bottom: 50px;
+        padding: 30px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        border-radius: 20px;
+        color: white;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    header h1 {
+        font-size: 32px;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .subtitle {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+        background: rgba(255,255,255,0.2);
+        padding: 5px 15px;
+        border-radius: 50px;
+        display: inline-block;
+    }
+    h2.section-intro {
+        text-align: center;
+        color: var(--primary-dark);
+        font-size: 24px;
+        margin: 40px 0 20px;
+        border-bottom: 4px dotted var(--primary);
+        padding-bottom: 10px;
+    }
+    .step-container {
+        margin-bottom: 60px;
+        padding: 25px;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
+    .step-header {
+        background: linear-gradient(90deg, #55efc4 0%, #81ecec 100%);
+        color: #003d33;
+        padding: 15px 25px;
+        border-radius: 15px;
+        font-size: 22px;
+        font-weight: bold;
+        margin: -40px -10px 25px -10px;
+        box-shadow: 0 8px 15px rgba(85,239,196,0.4);
+        display: flex;
+        align-items: center;
+    }
+    .step-header span.emo {
+        font-size: 30px;
+        margin-right: 15px;
+    }
+    .img-main {
+        width: 100%;
+        border-radius: 15px;
+        margin: 15px 0;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        display: block;
+    }
+    .img-main:hover { transform: scale(1.02); }
+    .info-card {
+        background: #fff9db;
+        border-left: 8px solid #f1c40f;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        font-weight: bold;
+        color: #856404;
+    }
+    .info-card.danger {
+        background: #ffeaea;
+        border-left-color: #d63031;
+        color: #a03028;
+    }
+    .info-card.tip {
+        background: #eafaf5;
+        border-left-color: var(--primary);
+        color: #056450;
+    }
+    .info-card p { margin: 0 0 10px; }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card ul { margin: 10px 0 0; padding-left: 1.3em; font-weight: normal; }
+    .info-card li { margin-bottom: 6px; }
+    .highlight {
+        color: #d63031;
+        font-weight: bold;
+        background: linear-gradient(transparent 70%, #ff7675 70%);
+    }
+    .btn {
+        display: inline-block;
+        background: #eafaf5;
+        border: 2px solid var(--primary);
+        color: var(--primary-dark);
+        border-radius: 50px;
+        padding: 2px 14px;
+        font-weight: bold;
+        font-size: 15px;
+        white-space: nowrap;
+    }
+    /* 判定の3種類（画面と同じ意味の色分け） */
+    .act { display:inline-block; border-radius:50px; padding:2px 14px; font-weight:bold; font-size:15px; white-space:nowrap; }
+    .act-go   { background:#e7f7f0; color:#0b7a55; border:2px solid #43c59e; }
+    .act-stop { background:#ffeaea; color:#c0392b; border:2px solid #ff7675; }
+    .act-ask  { background:#fff4de; color:#b9770e; border:2px solid #f5b041; }
+    code {
+        background: #f1f3f5;
+        border-radius: 6px;
+        padding: 2px 8px;
+        font-family: Menlo, Consolas, monospace;
+        font-size: 14px;
+        color: #2d3436;
+    }
+    /* ---- もくじ ---- */
+    .toc {
+        background: #eafaf5;
+        border: 2px dashed var(--primary);
+        border-radius: 20px;
+        padding: 22px 28px;
+        margin-bottom: 45px;
+    }
+    .toc h3 { margin: 0 0 12px; color: var(--primary-dark); font-size: 19px; }
+    .toc ol { margin: 0; padding-left: 1.4em; }
+    .toc li { margin-bottom: 4px; }
+    .toc a { color: var(--primary-dark); font-weight: bold; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    /* ---- 画像プレースホルダ ---- */
+    /* R2に同じ名前で上げると自動で写真に切り替わります（HTML編集不要） */
+    .shot { margin: 15px 0; }
+    .shot__box {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        background: #fff;
+    }
+    .shot__ph {
+        min-height: 190px;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 10px;
+        padding: 34px 20px; text-align: center;
+        background: repeating-linear-gradient(135deg,#eafaf5 0 12px,#ffffff 12px 24px);
+        border: 3px dashed #a8e6d5;
+        border-radius: 15px;
+    }
+    .shot__ph b {
+        font-size: 18px; color: var(--primary-dark);
+        background: #fff; border: 2px solid var(--primary);
+        border-radius: 50px; padding: 4px 18px;
+        font-family: Menlo, Consolas, monospace;
+    }
+    .shot__ph small { color: #7f8c8d; font-size: 13px; line-height: 1.6; max-width: 32ch; }
+    .shot__cap { margin-top: 8px; font-size: 14px; color: #636e72; text-align: center; }
+    /* ---- テーブル ---- */
+    .tblwrap { overflow-x: auto; margin: 20px 0; }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+    table.tbl th, table.tbl td {
+        border: 1px solid #dfe6e9; padding: 12px 14px; text-align: left; vertical-align: top;
+    }
+    table.tbl th { background: #eafaf5; color: var(--primary-dark); font-weight: bold; white-space: nowrap; }
+    /* ---- フッター ---- */
+    footer {
+        text-align: center;
+        margin-top: 80px;
+        padding: 40px;
+        border-top: 2px dashed var(--primary);
+    }
+    .footer-msg {
+        font-size: 20px; font-weight: bold; color: var(--primary-dark); margin-bottom: 30px;
+    }
+    .btn-close {
+        display: inline-block;
+        background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
+        color: white; padding: 18px 50px; border-radius: 50px;
+        font-size: 18px; font-weight: bold; text-decoration: none;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        border: none; cursor: pointer; transition: all 0.3s;
+    }
+    .btn-close:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+        background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+    }
+    @media (max-width: 600px) {
+        body { padding: 10px; }
+        .wrapper { padding: 22px 16px; border-radius: 20px; }
+        header h1 { font-size: 24px; }
+        .step-header { font-size: 18px; padding: 12px 16px; margin: -32px -4px 20px -4px; }
+        .step-header span.emo { font-size: 24px; margin-right: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        * { transition: none !important; }
+        .img-main:hover { transform: none; }
+    }
+    @media print {
+        body { background: #fff; padding: 0; }
+        .wrapper { box-shadow: none; border: none; padding: 0; max-width: none; }
+        .btn-close, .toc { display: none; }
+        .step-container { page-break-inside: avoid; }
+    }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>💊 メディカニ休薬チェッカー 🦀✨</h1>
+        <span class="subtitle">マスタ管理マニュアル 🏥🎊</span>
+    </header>
+
+    <div class="toc">
+        <h3>📖 このページでできること</h3>
+        <ol>
+            <li><a href="#s1">画面を開く（ログイン）</a></li>
+            <li><a href="#s2">仕組みを知ろう 🧩</a></li>
+            <li><a href="#s3">処置分類 🏥</a></li>
+            <li><a href="#s4">判定を直す ✏️</a></li>
+            <li><a href="#s5">YJコード照合 🔗</a></li>
+            <li><a href="#s6">成分の追加と編集 💊</a></li>
+            <li><a href="#s7">備考の定型文 💬</a></li>
+            <li><a href="#s8">保存と反映 💾</a></li>
+            <li><a href="#s9">よくある質問 ❓</a></li>
+        </ol>
+    </div>
+
+    <h2 class="section-intro">🚀 まずは画面を開こう 🚀</h2>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s1">
+        <div class="step-header">
+            <span class="emo">🔐🦀</span> ① 管理画面にログイン
+        </div>
+
+        <p>ブラウザで <code>/施設ID/kyu-admin</code> を開いてください🖥️<br>
+        施設IDは、いつも使っている休薬チェッカーのURLと同じものです✨</p>
+
+        <figure class="shot" data-img="MY01.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MY01.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">休薬マスタ管理の全体画面</figcaption>
+        </figure>
+
+        <div class="info-card danger">
+            🩺 <span class="highlight">はじめにお読みください</span><br><br>
+            この画面で設定する休薬日数やアクションは、添付文書や公表されているガイダンスをもとにした
+            <strong>一般的な参考値</strong>です。<br>
+            施設のプロトコルとして運用するには、<strong>必ず処方医・薬剤師の確認</strong>をお願いします🙏<br>
+            （画面の上部にも同じ注意が表示されます）
+        </div>
+
+        <p>右上の <span class="btn">↩️ 戻る</span> でいつでも休薬チェッカーの画面に戻れます👋</p>
+    </div>
+
+    <h2 class="section-intro">🧩 仕組みが分かるとカンタン 🧩</h2>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s2">
+        <div class="step-header" style="background: linear-gradient(90deg, #74b9ff 0%, #0984e3 100%); color: white;">
+            <span class="emo">🧩💡</span> ② 仕組みを知ろう
+        </div>
+
+        <p>このマスタは「<strong>成分</strong>」×「<strong>処置分類</strong>」のマス目でできています📊<br>
+        患者さんの持参薬を成分に読み替えて、受ける処置の列を見て判定を出す、というシンプルな仕組みです！</p>
+
+        <div class="tblwrap">
+        <table class="tbl">
+            <thead><tr><th>成分</th><th>一般手術</th><th>造影検査</th><th>内視鏡（観察・生検）</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>ワルファリン</td>
+                    <td><span class="act act-stop">休薬</span> 5日前</td>
+                    <td><span class="act act-go">継続可</span></td>
+                    <td><span class="act act-go">継続可</span></td>
+                </tr>
+                <tr>
+                    <td>クロピドグレル</td>
+                    <td><span class="act act-stop">休薬</span> 7日前</td>
+                    <td><span class="act act-go">継続可</span></td>
+                    <td><span class="act act-ask">処方元に照会</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p><strong>✨ アクションは3種類だけ ✨</strong></p>
+        <div class="tblwrap">
+        <table class="tbl">
+            <tr><th><span class="act act-go">継続可</span></th><td>そのまま飲み続けてOK🙆</td></tr>
+            <tr><th><span class="act act-stop">休薬</span></th><td>何日前から止めるかを日数で示します📅</td></tr>
+            <tr><th><span class="act act-ask">処方元に照会</span></th><td>施設だけでは決められないので、処方した先生に確認📞</td></tr>
+        </table>
+        </div>
+
+        <div class="info-card tip">
+            🔗 <strong>成分とYJコードの関係</strong><br><br>
+            持参薬は「薬品名」で入力されますが、判定は<strong>成分</strong>単位で行います。<br>
+            その橋渡しをするのが <span class="highlight">YJコード</span>（お薬のコードの先頭7桁）です！<br>
+            成分にYJコードが1つも登録されていないと、<strong>その成分は判定に出てきません</strong>⚠️<br>
+            くわしくは <a href="#s5" style="color:#056450;">⑤ YJコード照合</a> をどうぞ🦀
+        </div>
+
+        <p><strong>✨ バッジの意味 ✨</strong><br>
+        各成分の右上に付いている小さなラベルです👀</p>
+
+        <div class="tblwrap">
+        <table class="tbl">
+            <tr><th>既定</th><td>メディカニが用意した初期値のまま</td></tr>
+            <tr><th>施設</th><td>この施設で書き換えた内容になっている</td></tr>
+            <tr><th>YJ未照合</th><td>YJコードが未登録で、判定に出てこない状態⚠️</td></tr>
+            <tr><th>🏥採用</th><td>この施設の採用薬に該当するお薬がある</td></tr>
+        </table>
+        </div>
+
+        <p><span class="btn">既定</span> のままでも判定はちゃんと動きます！<br>
+        施設の方針と違うところ<strong>だけ</strong>書き換えれば大丈夫です🦀✨</p>
+    </div>
+
+    <h2 class="section-intro">⚙️ 施設に合わせて整えよう ⚙️</h2>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s3">
+        <div class="step-header" style="background: linear-gradient(90deg, #a29bfe 0%, #6c5ce7 100%); color: white;">
+            <span class="emo">🏥📋</span> ③ 処置分類
+        </div>
+
+        <p>表の「列」にあたる部分です🏥<br>
+        あらかじめ、小手術・一般手術・大手術・造影検査・内視鏡（観察）・内視鏡（ポリペク等）が入っています✨</p>
+
+        <figure class="shot" data-img="MY02.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MY02.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">処置分類の一覧</figcaption>
+        </figure>
+
+        <p><strong>✨ 分類を追加する ✨</strong></p>
+
+        <div class="tblwrap">
+        <table class="tbl">
+            <tr><th>①</th><td><span class="btn">＋ 分類を追加</span> をポチッ</td></tr>
+            <tr><th>②</th><td>名前を入力。施設で通じる呼び方でOK！例：<code>硬膜外麻酔</code></td></tr>
+            <tr><th>③</th><td>説明を入力。どんな処置が入るのか書いておくと現場が迷いません👍<br>例：<code>出血リスクが高く、抗血栓薬は原則休薬</code></td></tr>
+            <tr><th>④</th><td>追加すると、すべての成分にこの分類のマス目が増えます🎉</td></tr>
+        </table>
+        </div>
+
+        <p><strong>✨ 並び替える・直す・消す ✨</strong><br>
+        <span class="btn">一番上</span> でその分類を先頭に移動できます。よく使う処置を上に置くと選びやすいですよ😉<br>
+        <span class="btn">✏️</span> で名前と説明を変更、<span class="btn">🗑️</span> で削除です。</p>
+
+        <div class="info-card danger">
+            ⚠️ 分類を削除すると、<span class="highlight">すべての成分でその列に設定した内容も一緒に消えます</span>！<br>
+            名前を変えたいだけなら <span class="btn">✏️</span> のほうを使ってくださいね🙏
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s4">
+        <div class="step-header" style="background: linear-gradient(90deg, #fab1a0 0%, #ff7675 100%); color: white;">
+            <span class="emo">✏️📊</span> ④ 判定を直す
+        </div>
+
+        <p>成分カードの中の、直したいマス目をクリックすると編集欄が開きます👆</p>
+
+        <figure class="shot" data-img="MY03.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MY03.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">マス目を開いたところ</figcaption>
+        </figure>
+
+        <div class="tblwrap">
+        <table class="tbl">
+            <tr><th>①アクション</th><td><span class="act act-go">継続可</span> <span class="act act-stop">休薬</span> <span class="act act-ask">処方元に照会</span> の3つから選びます</td></tr>
+            <tr><th>②日数</th><td><span class="act act-stop">休薬</span> を選んだときだけ使います。「何日前から止めるか」を数字で。例：<code>7</code><br>当日の朝から止める場合は <code>0</code> を入れてください📅</td></tr>
+            <tr><th>③コメント</th><td>判定と一緒に画面へ出る補足です。判断のよりどころや、確認してほしいことを書いておくと現場で役立ちます📝</td></tr>
+            <tr><th>④反映</th><td><span class="btn">反映</span> をポチッ。やめるときは <span class="btn">キャンセル</span> です</td></tr>
+        </table>
+        </div>
+
+        <div class="info-card">
+            💡 <span class="btn">反映</span> は<strong>この画面上で反映するだけ</strong>です！<br>
+            最後に <a href="#s8" style="color:#856404;">⑧ 保存</a> を押すまで、実際には保存されていません🙏
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s5">
+        <div class="step-header" style="background: linear-gradient(90deg, #ffeaa7 0%, #fdcb6e 100%); color: #d35400;">
+            <span class="emo">🔗💊</span> ⑤ YJコード照合
+        </div>
+
+        <p>成分と、実際のお薬をつなぐ大事な作業です🔗<br>
+        <span class="highlight">ここが空だと、その成分は判定に一度も出てきません！</span><br>
+        バッジが <span class="btn">YJ未照合</span> になっている成分が対象です👀</p>
+
+        <figure class="shot" data-img="MY04.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MY04.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">YJコード照合の画面</figcaption>
+        </figure>
+
+        <p>成分カードの <span class="btn">🔍 YJコード照合</span> を押すと、3つの方法が選べます✨</p>
+
+        <p><strong>✨ 方法1：採用薬からまとめて入れる（いちばんラク！）✨</strong><br>
+        <span class="btn">🔍 採用薬から自動追加</span> を押すと、この施設の採用薬の中から該当しそうなお薬を探して登録します🎉<br>
+        まずはこれを試すのがオススメです！</p>
+
+        <p><strong>✨ 方法2：薬名で検索して選ぶ ✨</strong><br>
+        <span class="btn">🔍 検索</span> に薬品名や成分名を入れて探し、<span class="btn">＋追加</span> で登録します。<br>
+        他院で処方された持参薬も対象にしたいので、<strong>採用薬に無いお薬もここから足せます</strong>👍</p>
+
+        <p><strong>✨ 方法3：コードを直接入れる ✨</strong><br>
+        <span class="btn">⌨️ 手入力で追加</span> から、YJコードの<strong>先頭7桁</strong>と成分名（任意）を入力します⌨️</p>
+
+        <div class="info-card danger">
+            🚨 <span class="highlight">登録する前に必ず薬品名を見てください！</span><br><br>
+            薬名の一部が似ているだけの<strong>まったく違うお薬</strong>が候補に出ることがあります。実際にあった例です👇
+            <ul>
+                <li>「モルヒネ」で探す → <strong>アポモルヒネ</strong>（パーキンソン病のお薬）が出る</li>
+                <li>「ヘパリン」で探す → <strong>ヘパリン類似物質</strong>（保湿剤）が出る</li>
+                <li>「オキシコドン」で探す → <strong>オキシコナゾール</strong>（カンジダのお薬）が出る</li>
+            </ul>
+        </div>
+
+        <p>登録済みのコードは一覧に並び、<span class="btn">削除</span> で外せます🗑️<br>
+        まだ何も無いときは <span class="btn">YJコード未登録</span> と表示されます。</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s6">
+        <div class="step-header" style="background: linear-gradient(90deg, #81ecec 0%, #00cec9 100%); color: #00504d;">
+            <span class="emo">💊✏️</span> ⑥ 成分の追加と編集
+        </div>
+
+        <p><strong>✨ 表示名と分類を直す ✨</strong><br>
+        成分カードの <span class="btn">✏️ 成分情報</span> から変更できます📝</p>
+
+        <figure class="shot" data-img="MY05.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MY05.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">成分情報の編集</figcaption>
+        </figure>
+
+        <div class="tblwrap">
+        <table class="tbl">
+            <thead><tr><th>項目</th><th>入力例</th><th>説明</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>成分名（表示用）</td>
+                    <td><code>クロピドグレル</code></td>
+                    <td>画面と帳票に出る名前です。施設で通じる呼び方に変えてOK👌</td>
+                </tr>
+                <tr>
+                    <td>薬効分類（表示用）</td>
+                    <td><code>抗血小板薬</code></td>
+                    <td>成分名の下に小さく出ます。何のお薬かがひと目で分かるように✨</td>
+                </tr>
+                <tr>
+                    <td>再開の目安</td>
+                    <td>術後、止血確認後に処方元の指示で再開</td>
+                    <td>いつから再開してよいかの案内。判定結果と一緒に表示されます📅</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p>書き換えたあとで元に戻したくなったら <span class="btn">↩ デフォルト値に戻す</span> をポチッ！<br>
+        メディカニが用意した初期値に戻ります😉</p>
+
+        <p><strong>✨ 成分を追加する ✨</strong><br>
+        一覧の下にある <span class="btn">＋ 成分を追加</span> から、この施設だけの成分を足せます🎉</p>
+
+        <div class="info-card">
+            ⚠️ 新しく足した成分は、最初はどの処置分類も未設定です。<br>
+            <span class="highlight">YJコードを登録して、各分類の判定を決めるまでは判定に出てきません！</span><br>
+            追加したらセットで設定してくださいね🦀
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s7">
+        <div class="step-header" style="background: linear-gradient(90deg, #dfe6e9 0%, #b2bec3 100%); color: #2d3436;">
+            <span class="emo">💬📄</span> ⑦ 備考の定型文
+        </div>
+
+        <p>休薬チェッカーの帳票で、備考欄に入れる文章の候補です📝<br>
+        <span class="btn">💬 備考の定型文</span> に、<span class="highlight">1行に1つずつ</span> 書いてください！</p>
+
+        <figure class="shot" data-img="MY06.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MY06.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">備考の定型文</figcaption>
+        </figure>
+
+        <div class="info-card tip">
+            💡 たとえば「休薬の可否および再開時期については、処方元へご確認をお願いいたします。」など、<br>
+            毎回書いている文章を入れておくと、帳票を作るときにボタンひとつで入ります🎊
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s8">
+        <div class="step-header" style="background: linear-gradient(90deg, #55efc4 0%, #00b894 100%); color: #003d33;">
+            <span class="emo">💾🎉</span> ⑧ 保存と反映
+        </div>
+
+        <div class="info-card danger">
+            🚨 <span class="highlight">いちばん大事なこと！</span><br><br>
+            マス目の <span class="btn">反映</span> を押しただけでは<strong>保存されていません</strong>😱<br>
+            最後に必ず <span class="btn">💾 施設マスタとして保存</span> を押してください！<br>
+            押さずに画面を閉じると、変更が消えてしまいます…🥲
+        </div>
+
+        <figure class="shot" data-img="MY07.png">
+            <div class="shot__box">
+                <div class="shot__ph">
+                    <b>MY07.png</b>
+                    <small>この名前でR2にアップすると自動で画像に切り替わります🦀</small>
+                </div>
+            </div>
+            <figcaption class="shot__cap">保存ボタン</figcaption>
+        </figure>
+
+        <p>保存すると、この施設の休薬チェッカーに反映されます🎊<br>
+        少し時間差があるので、すぐ変わっていないように見えるときは<strong>1分ほど待ってから</strong>画面を開き直してください🔄</p>
+
+        <div class="info-card tip">
+            🛡️ メディカニ側で共通の初期値を更新することがありますが、<br>
+            <strong>施設で書き換えた内容は成分ごとに保持される</strong>ので、上書きされて消えることはありません！安心してくださいカニ🦀✨
+        </div>
+
+        <div class="info-card">
+            🏢 <strong>【共通デフォルト】について</strong><br>
+            こちらはメディカニの運営が<strong>全施設の初期値</strong>を更新するためのものです。<br>
+            施設の設定は <span class="btn">💾 施設マスタとして保存</span> のほうを使ってくださいね🙏
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <div class="step-container" id="s9">
+        <div class="step-header" style="background: linear-gradient(90deg, #b2bec3 0%, #636e72 100%); color: white;">
+            <span class="emo">❓💡</span> ⑨ よくある質問（FAQ）
+        </div>
+
+        <p><strong>Q. 「休薬チェッカーオプションが有効ではありません」と出ちゃいます😭</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> この施設が休薬オプションに加入していない状態です。導入担当までご連絡ください📩</p>
+
+        <p><strong>Q. 持参薬を入れても「リストにありませんでした」になります🤔</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> そのお薬に対応する成分の<span class="highlight">YJコードが未登録</span>かもしれません。バッジが <span class="btn">YJ未照合</span> になっていないか確認してみてください🔍</p>
+
+        <p><strong>Q. 設定したのに判定が変わりません😵</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> <span class="btn">💾 施設マスタとして保存</span> を押したか確認して、1分ほど待ってから画面を開き直してみてください🔄</p>
+
+        <p><strong>Q. 関係ないお薬が同じ成分として判定されます😱</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> YJコード照合で別のお薬を登録してしまった可能性があります。<span class="btn">🔍 YJコード照合</span> の一覧を開いて、薬品名を確認して <span class="btn">削除</span> してください🗑️</p>
+
+        <p><strong>Q. 処置分類を消したら判定が空っぽになりました😨</strong><br>
+        <span style="color:var(--primary-dark);">A.</span> 分類を削除すると、その列の設定も一緒に消えます。<span class="highlight">同じ名前で作り直しても中身は戻りません</span>ので、もう一度設定をお願いします🙏</p>
+
+        <div class="info-card danger">
+            🩺 <strong>最後にもう一度だけ</strong><br><br>
+            この画面の内容は、判定の根拠そのものです。<br>
+            休薬日数やアクションを変更したときは、<span class="highlight">必ず処方医・薬剤師の確認</span>を受けてから運用に入れてくださいね🙏
+        </div>
+    </div>
+
+    <footer>
+        <p class="footer-msg">現場の皆様の業務が少しでもラクになることを、心より願っておりますカニ🦀✨</p>
+        <button class="btn-close" onclick="window.close();">👋 マニュアルを閉じる</button>
+    </footer>
+</div>
+
+<script>
+/* ==========================================================================
+   画像の差し替え
+   --------------------------------------------------------------------------
+   R2_BASE を1か所だけ書き換えれば、置き場所ごと引っ越せます。
+   各画像は figure の data-img に書いたファイル名で読み込みます。
+   ファイルがまだ無いあいだは点線の枠にファイル名が表示され、
+   R2にアップロードした時点で自動的に画像へ切り替わります（HTMLの編集は不要）。
+   ========================================================================== */
+var R2_BASE = "https://pub-c7c02d36bdac4c67bd68891550df9b90.r2.dev/";
+
+(function () {
+  var figs = document.querySelectorAll('.shot[data-img]');
+  Array.prototype.forEach.call(figs, function (fig) {
+    var name = fig.getAttribute('data-img');
+    if (!name) return;
+    var box = fig.querySelector('.shot__box');
+    var ph  = fig.querySelector('.shot__ph');
+    var cap = fig.querySelector('.shot__cap');
+    var img = new Image();
+    img.className = 'img-main';
+    img.style.margin = '0';
+    img.alt = cap ? cap.textContent.trim() : name;
+    img.loading = 'lazy';
+    img.onload = function () {
+      if (ph) ph.style.display = 'none';
+      box.insertBefore(img, box.firstChild);
+    };
+    img.onerror = function () { /* まだ無いときは点線の枠のまま */ };
+    img.src = R2_BASE + name;
+  });
+})();
+</script>
+
+</body>
+</html>
